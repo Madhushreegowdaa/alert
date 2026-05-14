@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fraud Alert Client</title>
+</head>
+<body>
+
+<h2>Fraud Alert System</h2>
+
+<script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+
+<script>
+  const socket = io("http://localhost:3000");
+
+  socket.emit("join_user_room", 1);
+
+  socket.on("fraud_alert", (data) => {
+    console.log("Fraud Alert:", data);
+    alert(
+      `Fraud Alert!\n\nTransaction ID: ${data.txn_id}\nMessage: ${data.message}\nAmount: ${data.amount}\nLocation: ${data.location}`
+    );
+  });
+</script>
+
+</body>
+</html>
